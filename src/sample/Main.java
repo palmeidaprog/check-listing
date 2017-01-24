@@ -32,9 +32,13 @@ public class Main extends Application {
             System.err.println("Couldn't load main.fxml");
             e.printStackTrace();
         }
-        mainStage.setTitle("Hello World");
+        mainStage.setTitle("Check Listing - To Do List Manager");
         mainStage.setScene(new Scene(root, 300, 275));
         mainStage.show();
+    }
+
+    public static Stage getStage() {
+        return mainStage;
     }
 
 
