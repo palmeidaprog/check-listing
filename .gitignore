@@ -1,0 +1,10 @@
+# mac system files
+.DS_Store
+
+# out intellij binary folder
+/out
+/.idea/workspace.xml
+/.idea/gradle.xml
+/.idea/encodings.xml
+/.idea/vcs.xml
+
