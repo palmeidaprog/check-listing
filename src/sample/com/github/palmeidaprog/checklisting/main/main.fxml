@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="671.0" style="-fx-font-family: &quot;Lucida Grande&quot;;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <HBox alignment="CENTER" prefHeight="68.0" prefWidth="530.0" spacing="15.0" styleClass="background">
@@ -18,25 +17,25 @@
             <DropShadow />
          </effect>
          <children>
-            <Button mnemonicParsing="false" prefHeight="18.0" prefWidth="117.0" text="New">
+            <Button fx:id="newBtn" mnemonicParsing="false" onMouseEntered="#newBtnEnter" onMouseExited="#newBtnExit" prefHeight="18.0" prefWidth="117.0" text="New">
                <effect>
                   <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
                </effect>
             </Button>
-            <Button layoutX="226.0" layoutY="42.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="123.0" text="Delete">
+            <Button fx:id="removeBtn" layoutX="226.0" layoutY="42.0" mnemonicParsing="false" onMouseEntered="#removeBtnEnter" onMouseExited="#removeBtnExit" prefHeight="23.0" prefWidth="123.0" text="Delete">
                <effect>
                   <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
                </effect>
             </Button>
-            <Button layoutX="275.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="New Category">
+            <Button fx:id="newCategoryBtn" layoutX="275.0" layoutY="42.0" mnemonicParsing="false" onMouseEntered="#newCategoryBtnEnter" onMouseExited="#newCategoryBtnExit" prefHeight="25.0" prefWidth="125.0" text="New Category">
                <effect>
                   <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
                </effect>
             </Button>
          </children>
          <stylesheets>
-            <URL value="@css_ui/color_background.css" />
-            <URL value="@css_ui/button_top.css" />
+            <URL value="@../css_ui/color_background.css" />
+            <URL value="@../css_ui/button_top.css" />
          </stylesheets>
       </HBox>
    </top>

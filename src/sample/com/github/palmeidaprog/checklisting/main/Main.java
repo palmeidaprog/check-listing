@@ -1,4 +1,4 @@
-package sample;
+package sample.com.github.palmeidaprog.checklisting.main;
 
 /*
 * Check Listing
@@ -33,7 +33,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
         mainStage.setTitle("Check Listing - To Do List Manager");
-        mainStage.setScene(new Scene(root, 300, 275));
+        mainStage.setScene(new Scene(root, 670, 700));
         mainStage.show();
     }
 
