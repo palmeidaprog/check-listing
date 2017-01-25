@@ -1,0 +1,6 @@
+.table-column {
+    /*-fx-background-color: linear-gradient(to bottom, #263238 0%,#263238 10%,#6b6b6b 50%,#263238 90%,#263238 100%,#263238 100%);*/
+    -fx-background-color: #52596B;
+    -fx-text-fill: white;
+}
+
