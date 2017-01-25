@@ -1,4 +1,4 @@
-package sample.com.github.palmeidaprog.checklisting.main;
+package com.github.palmeidaprog.checklisting.main;
 
 /*
 * Check Listing

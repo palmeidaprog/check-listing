@@ -1,4 +1,4 @@
-package sample.com.github.palmeidaprog.checklisting.main;
+package com.github.palmeidaprog.checklisting.main;
 
 /*
 * Check Listing
@@ -7,11 +7,30 @@ package sample.com.github.palmeidaprog.checklisting.main;
 * @email palmeidaprogramming@gmail.com
 */
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import com.github.palmeidaprog.checklisting.data.ToDoData;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 
-public class MainController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MainController implements Initializable {
+    // top HBox buttons
     @FXML private Button newBtn, removeBtn, newCategoryBtn;
+
+    // To Do Table
+    @FXML private TreeTableView<ToDoData> todoTable;
+    @FXML private TreeTableColumn<ToDoData, CheckBox> checkCol;
+    @FXML private TreeTableColumn<ToDoData, String> categoryCol, descriptionCol;
+    private ObservableList<ToDoData> todoList = FXCollections.observableArrayList();
 
     //--Singleton design---------------------------------------------------------
     private volatile static MainController instance = null;
@@ -21,6 +40,16 @@ public class MainController {
             instance = new MainController();
         }
         return instance;
+    }
+
+    //--Implementing Initializable interface----------------------------------------------------
+
+    @Override
+    public void initialize(URL u, ResourceBundle rb) {
+        // To Do TableView //todo: uncomment when implement ToDoClass
+        /*checkCol.setCellValueFactory(new PropertyValueFactory<>("check"));
+        categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));*/
     }
 
     //--Events methods--------------------------------------------------------------------------
