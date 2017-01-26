@@ -11,9 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 
-/**
- * Created by paulo on 1/24/17.
- */
 public class UIEffects {
 
     //--Singleton design---------------------------------------------------------

@@ -7,7 +7,6 @@ package com.github.palmeidaprog.checklisting.data;
 * @email palmeidaprogramming@gmail.com
 */
 
-import com.sun.xml.internal.bind.v2.TODO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.CheckBox;
@@ -24,6 +23,14 @@ public class ToDoData implements Serializable {
         check = new CheckBox();
         check.setSelected(false);
         createCheckBoxEvent();
+    }
+
+    // create new instances read from Serialized Obj
+    public ToDoData(ToDoData t) {
+        check = new CheckBox();
+        check.setSelected(t.isSelected());
+        checked = t.isSelected();
+
     }
 
     //--Data Model-------------------------------------------------------
@@ -55,6 +62,12 @@ public class ToDoData implements Serializable {
     }
 
     //--Other Serialization related and object write/read methods----------------------------
+
+    //
+    public boolean isSelected() {
+        return checked;
+    }
+
     private void createCheckBoxEvent() {
         check.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -64,7 +77,5 @@ public class ToDoData implements Serializable {
             }
         });
     }
-
-
 
 }
