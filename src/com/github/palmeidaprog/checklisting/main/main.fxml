@@ -17,7 +17,7 @@
             <DropShadow />
          </effect>
          <children>
-            <Button fx:id="newBtn" mnemonicParsing="false" onMouseEntered="#newBtnEnter" onMouseExited="#newBtnExit" prefHeight="18.0" prefWidth="117.0" text="New">
+            <Button fx:id="newBtn" mnemonicParsing="false" onMouseClicked="#newBtnClick" onMouseEntered="#newBtnEnter" onMouseExited="#newBtnExit" prefHeight="18.0" prefWidth="117.0" text="New">
                <effect>
                   <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
                </effect>

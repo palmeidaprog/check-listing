@@ -1,8 +1,11 @@
 package com.github.palmeidaprog.checklisting.main;
 
-/**
- * Created by paulo on 1/24/17.
- */
+/*
+* Check Listing
+* @author Paulo R. Almeida Filho
+* http://www.github.com/palmeidaprog/check-listing
+* @email palmeidaprogramming@gmail.com
+*/
 
 // mouse events to support effects methods
 public enum MouseEvent {

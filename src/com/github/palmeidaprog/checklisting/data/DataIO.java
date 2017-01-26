@@ -12,7 +12,6 @@ package com.github.palmeidaprog.checklisting.data;
 import com.github.palmeidaprog.checklisting.main.Settings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.io.*;
 
 public class DataIO {

@@ -47,12 +47,13 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL u, ResourceBundle rb) {
         // To Do TableView //todo: uncomment when implement ToDoClass
-        /*checkCol.setCellValueFactory(new PropertyValueFactory<>("check"));
+        checkCol.setCellValueFactory(new PropertyValueFactory<>("check"));
         categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
-        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));*/
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        //todoTable.setItems(todoList);
     }
 
-    //--Events methods--------------------------------------------------------------------------
+    //--Enter/Exxit Events methods--------------------------------------------------------------------------
 
     public void mouseButtonEnter(Button btn) {
         UIEffects.getInstance().btnShadow(btn, MouseEvent.ENTER);
@@ -84,5 +85,11 @@ public class MainController implements Initializable {
 
     public void newCategoryBtnExit() {
         mouseButtonExit(newCategoryBtn);
+    }
+
+    //--Click Event-----------------------------------------------------------------------------------------
+
+    public void newBtnCLick() {
+        todoList.add(new ToDoData());
     }
 }
