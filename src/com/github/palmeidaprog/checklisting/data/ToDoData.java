@@ -30,7 +30,9 @@ public class ToDoData implements Serializable {
         check = new CheckBox();
         check.setSelected(t.isSelected());
         checked = t.isSelected();
-
+        category = t.getCategory();
+        description = t.getDescription();
+        createCheckBoxEvent();
     }
 
     //--Data Model-------------------------------------------------------

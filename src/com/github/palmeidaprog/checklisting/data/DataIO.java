@@ -45,7 +45,7 @@ public class DataIO {
     /*@param list List of objs to be written*/
     public static void updateObjFile(ObservableList<ToDoData> list) {
         File objFile = new File(Settings.getInstance().getConfigDir() +
-                "/profiles.ser");
+                "/todo.ser");
 
         // create file if it doesn't exist
         if(!objFile.exists()) {
@@ -67,7 +67,7 @@ public class DataIO {
             if(!Settings.getInstance().getConfigDir().mkdirs()) {
                 throw new IOException("Couldn't create the directory");
             }
-            if(!new File(Settings.getInstance().getConfigDir() + "/profiles.ser").createNewFile()) {
+            if(!new File(Settings.getInstance().getConfigDir() + "/todo.ser").createNewFile()) {
                 throw new IOException("Couldn't create the file");
             }
         } catch(IOException e) {

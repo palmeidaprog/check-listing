@@ -7,18 +7,14 @@ package com.github.palmeidaprog.checklisting.main;
 * @email palmeidaprogramming@gmail.com
 */
 
+import com.github.palmeidaprog.checklisting.data.DataIO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.*;
 import com.github.palmeidaprog.checklisting.data.ToDoData;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -27,9 +23,9 @@ public class MainController implements Initializable {
     @FXML private Button newBtn, removeBtn, newCategoryBtn;
 
     // To Do Table
-    @FXML private TreeTableView<ToDoData> todoTable;
-    @FXML private TreeTableColumn<ToDoData, CheckBox> checkCol;
-    @FXML private TreeTableColumn<ToDoData, String> categoryCol, descriptionCol;
+    @FXML private TableView<ToDoData> todoTable;
+    @FXML private TableColumn<ToDoData, CheckBox> checkCol;
+    @FXML private TableColumn<ToDoData, String> categoryCol, descriptionCol;
     private ObservableList<ToDoData> todoList = FXCollections.observableArrayList();
 
     //--Singleton design---------------------------------------------------------
@@ -46,11 +42,14 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL u, ResourceBundle rb) {
+        todoList = DataIO.readObjList();
+
         // To Do TableView //todo: uncomment when implement ToDoClass
         checkCol.setCellValueFactory(new PropertyValueFactory<>("check"));
         categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        //todoTable.setItems(todoList);
+        todoTable.setItems(todoList);
+        todoTable.setPlaceholder(new Label("Lista vazia"));
     }
 
     //--Enter/Exxit Events methods--------------------------------------------------------------------------
@@ -89,7 +88,15 @@ public class MainController implements Initializable {
 
     //--Click Event-----------------------------------------------------------------------------------------
 
-    public void newBtnCLick() {
+    public void newBtnClick() {
         todoList.add(new ToDoData());
+        updateObjOnClose();
     }
+
+    //--Close Event-----------------------------------------------------------------------------------------
+
+    public void updateObjOnClose() {
+        DataIO.updateObjFile(todoList);
+    }
+
 }

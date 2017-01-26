@@ -8,10 +8,12 @@ package com.github.palmeidaprog.checklisting.main;
 */
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -35,6 +37,14 @@ public class Main extends Application {
         mainStage.setTitle("Check Listing - To Do List Manager");
         mainStage.setScene(new Scene(root, 670, 700));
         mainStage.show();
+
+        mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+            @Override
+            public void handle(WindowEvent event) {
+                MainController.getInstance().updateObjOnClose();
+            }
+        });
     }
 
     public static Stage getStage() {
