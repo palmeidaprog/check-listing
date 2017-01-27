@@ -22,7 +22,7 @@
                   <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
                </effect>
             </Button>
-            <Button fx:id="removeBtn" layoutX="226.0" layoutY="42.0" mnemonicParsing="false" onMouseEntered="#removeBtnEnter" onMouseExited="#removeBtnExit" prefHeight="23.0" prefWidth="123.0" text="Delete">
+            <Button fx:id="removeBtn" layoutX="226.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#removeBtnClick" onMouseEntered="#removeBtnEnter" onMouseExited="#removeBtnExit" prefHeight="23.0" prefWidth="123.0" text="Delete">
                <effect>
                   <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
                </effect>
@@ -48,10 +48,10 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
-            <TableView fx:id="todoTable" prefHeight="608.0" prefWidth="634.0">
+            <TableView fx:id="todoTable" editable="true" prefHeight="608.0" prefWidth="634.0">
               <columns>
-                <TableColumn fx:id="checkCol" editable="false" prefWidth="75.0" sortable="false" style="-fx-alignment: center;" text="-" />
-                <TableColumn fx:id="categoryCol" prefWidth="140.0" style="-fx-alignment: center;" text="Category" />
+                <TableColumn fx:id="checkCol" editable="false" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" sortable="false" style="-fx-alignment: center;" text="-" />
+                <TableColumn fx:id="categoryCol" prefWidth="182.0" style="-fx-alignment: center;" text="Category" />
                   <TableColumn fx:id="descriptionCol" prefWidth="415.0" text="Description" />
               </columns>
             </TableView>

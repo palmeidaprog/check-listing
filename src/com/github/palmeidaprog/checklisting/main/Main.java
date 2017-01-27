@@ -19,6 +19,7 @@ import java.io.IOException;
 
 public class Main extends Application {
     private static Stage mainStage;
+    private final double WIDTH = 670, HEIGHT = 700;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -35,7 +36,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
         mainStage.setTitle("Check Listing - To Do List Manager");
-        mainStage.setScene(new Scene(root, 670, 700));
+        mainStage.setScene(new Scene(root, WIDTH, HEIGHT));
         mainStage.show();
 
         mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
