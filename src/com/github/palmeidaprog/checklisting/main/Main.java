@@ -41,7 +41,7 @@ public class Main extends Application {
 
         // Mac OS X specific code TODO: Only use when compiling in OS X
 /*        com.apple.eawt.Application.getApplication().setDockIconImage(ImageIO.read(getClass()
-                .getResourceAsStream("/resources/todo_trans128.png")));*/
+                .getResourceAsStream("../resources/todo_trans128.png")));*/
 
         mainStage.setTitle("Check Listing v0.1 alpha - To Do List Manager");
         mainStage.setScene(new Scene(root, WIDTH, HEIGHT));
