@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -35,7 +36,14 @@ public class Main extends Application {
             System.err.println("Couldn't load main.fxml");
             e.printStackTrace();
         }
-        mainStage.setTitle("Check Listing - To Do List Manager");
+        mainStage.getIcons().add(new Image(getClass()
+                .getResourceAsStream("../resources/todo_trans128.png")));
+
+        // Mac OS X specific code TODO: Only use when compiling in OS X
+/*        com.apple.eawt.Application.getApplication().setDockIconImage(ImageIO.read(getClass()
+                .getResourceAsStream("/resources/todo_trans128.png")));*/
+
+        mainStage.setTitle("Check Listing v0.1 alpha - To Do List Manager");
         mainStage.setScene(new Scene(root, WIDTH, HEIGHT));
         mainStage.show();
 
