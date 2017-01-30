@@ -64,13 +64,13 @@ public class Main extends Application {
 
     public void osx() {
         // Mac OS X specific code TODO: Only use when compiling in OS X
-        try {
+/*        try {
             com.apple.eawt.Application.getApplication().setDockIconImage(ImageIO.read(getClass()
                     .getResourceAsStream("../resources/todo_trans128.png")));
         } catch(IOException e) {
             System.err.println("Couldn't find the icon");
             e.printStackTrace();
-        }
+        }*/
 
         /*MenuBar menu = new MenuBar();
         Menu file = new Menu();
