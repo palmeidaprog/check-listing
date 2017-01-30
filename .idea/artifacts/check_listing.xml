@@ -1,9 +1,9 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" name="Check Listing">
-    <output-path>$PROJECT_DIR$/out/artifacts/Check_Listing</output-path>
+  <artifact type="javafx" name="check-listing">
+    <output-path>$PROJECT_DIR$/out/artifacts/check_listing</output-path>
     <properties id="javafx-properties">
       <options>
-        <option name="appClass" value="sample.Main" />
+        <option name="appClass" value="com.github.palmeidaprog.checklisting.main.Main" />
         <option name="description" value="" />
         <option name="height" value="700" />
         <option name="htmlPlaceholderId" value="" />
