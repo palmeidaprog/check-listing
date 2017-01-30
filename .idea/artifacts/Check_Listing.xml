@@ -10,13 +10,14 @@
         <option name="icons">
           <JavaFxApplicationIcons>
             <option name="linuxIcon" value="$PROJECT_DIR$/src/com/github/palmeidaprog/checklisting/resources/todo_trans128.png" />
+            <option name="macIcon" value="$PROJECT_DIR$/src/com/github/palmeidaprog/checklisting/resources/todo_trans128.png.icns" />
             <option name="windowsIcon" value="$PROJECT_DIR$/src/com/github/palmeidaprog/checklisting/resources/todo_trans128.ico" />
           </JavaFxApplicationIcons>
         </option>
         <option name="nativeBundle" value="all" />
         <option name="title" value="Check Listing" />
         <option name="vendor" value="Paulo R. Almeida Filho" />
-        <option name="version" value="0.1a" />
+        <option name="version" value="0.1 alpha" />
         <option name="width" value="670" />
       </options>
     </properties>
