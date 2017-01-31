@@ -41,7 +41,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
         mainStage.getIcons().add(new Image(getClass()
-                .getResourceAsStream("../resources/todo_trans128.png")));
+                .getResourceAsStream("resources/todo_trans128.png")));
 
         /*if(System.getProperty("os.name").toLowerCase().contains("mac")) {
             osx();
