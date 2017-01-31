@@ -19,6 +19,8 @@ public class Settings implements Serializable {
             "/Library/Application Support/CheckListing");
     private transient File windowsFolder = new File(System.getProperty("user.home") +
             "/AppData/Roaming/CheckListing");
+    private transient File linuxFolder = new File(System.getProperty("user.home") +
+            "/.CheckListing");
 
     // Constructor for serialization
     public Settings(Settings s) {
@@ -48,7 +50,7 @@ public class Settings implements Serializable {
             return macFolder;
         }
         else { // linux and others
-            return new File("data"); // return program root folder
+            return linuxFolder; // return program root folder
         }
     }
 

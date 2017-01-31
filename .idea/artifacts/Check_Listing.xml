@@ -1,0 +1,30 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Check Listing">
+    <output-path>$PROJECT_DIR$/out/artifacts/Check_Listing</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="com.github.palmeidaprog.checklisting.main.Main" />
+        <option name="description" value="palmeidaprogramming@gmail.com&#10;https://www.github.com/palmeidaprog" />
+        <option name="height" value="700" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="icons">
+          <JavaFxApplicationIcons>
+            <option name="linuxIcon" value="$PROJECT_DIR$/src/com/github/palmeidaprog/checklisting/main/resources/todo_trans128.png" />
+            <option name="macIcon" value="$PROJECT_DIR$/src/com/github/palmeidaprog/checklisting/main/resources/todo_trans128.png.icns" />
+            <option name="windowsIcon" value="$PROJECT_DIR$/src/com/github/palmeidaprog/checklisting/main/resources/todo_trans128.ico" />
+          </JavaFxApplicationIcons>
+        </option>
+        <option name="nativeBundle" value="all" />
+        <option name="title" value="Check Listing - To Do Manager" />
+        <option name="vendor" value="Paulo R. Almeida Filho" />
+        <option name="version" value="0.1 alpha" />
+        <option name="width" value="670" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="check_listing.jar">
+        <element id="module-output" name="check-listing" />
+      </element>
+    </root>
+  </artifact>
+</component>
