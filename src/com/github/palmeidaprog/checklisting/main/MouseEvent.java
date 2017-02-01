@@ -9,5 +9,5 @@ package com.github.palmeidaprog.checklisting.main;
 
 // mouse events to support effects methods
 public enum MouseEvent {
-    EXIT, ENTER
+    EXIT, ENTER, LOCK, UNLOCK
 }

@@ -7,8 +7,11 @@ package com.github.palmeidaprog.checklisting.main;
 * @email palmeidaprogramming@gmail.com
 */
 
+import com.sun.java.swing.plaf.gtk.GTKConstants;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.effect.BlurType;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.DropShadow;
 
 public class UIEffects {
@@ -39,6 +42,33 @@ public class UIEffects {
                 ds.setOffsetX(2.0);
                 ds.setBlurType(BlurType.GAUSSIAN);
                 btn.setEffect(ds);
+                break;
+        }
+    }
+
+    protected void blur(Node n, MouseEvent m) {
+
+        DropShadow s = new DropShadow();
+
+        BoxBlur b = new BoxBlur();
+        b.setIterations(3);
+        b.setHeight(5);
+        b.setWidth(5);
+
+        switch(m) {
+            case LOCK:
+                s.setInput(b);
+                // no break intended
+            case UNLOCK:
+                if(n.getEffect() instanceof DropShadow) {
+                    n.setEffect(s);
+                    System.out.println("with shadows " + n.getClass().getName()); // @debug
+                }
+                else {
+                    n.setEffect(b);
+                    System.out.println("No shadows " + n.getClass().getName()); // @debug
+                }
+
                 break;
         }
     }

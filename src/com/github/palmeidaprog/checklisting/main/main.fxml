@@ -12,7 +12,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="671.0" style="-fx-font-family: &quot;Lucida Grande&quot;;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <HBox alignment="CENTER" prefHeight="68.0" prefWidth="530.0" spacing="15.0" styleClass="background">
+      <HBox fx:id="topBox" alignment="CENTER" prefHeight="68.0" prefWidth="530.0" spacing="15.0" styleClass="background">
          <effect>
             <DropShadow />
          </effect>
@@ -40,7 +40,7 @@
       </HBox>
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="mainBox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>

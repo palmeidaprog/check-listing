@@ -17,6 +17,8 @@ import javafx.scene.control.*;
 import com.github.palmeidaprog.checklisting.data.ToDoData;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,6 +27,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+    @FXML private HBox topBox;
+    @FXML private VBox mainBox;
+
     // top HBox buttons
     @FXML private Button newBtn, removeBtn, newCategoryBtn;
 
@@ -61,6 +66,10 @@ public class MainController implements Initializable {
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         descriptionCol.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionCol.setOnEditCommit(editCellEvent("description"));
+
+        // password lock
+        lock(true);
+
     }
 
     //--Enter/Exxit Events methods--------------------------------------------------------------------------
@@ -150,4 +159,12 @@ public class MainController implements Initializable {
         DataIO.updateObjFile(todoList);
     }
 
+
+    // lock / unlock event
+    private void lock(boolean b) {
+        UIEffects.getInstance().blur(mainBox, b ? MouseEvent.LOCK : MouseEvent.UNLOCK);
+        mainBox.setDisable(b);
+        UIEffects.getInstance().blur(topBox, b ? MouseEvent.LOCK : MouseEvent.UNLOCK);
+        topBox.setDisable(b);
+    }
 }
