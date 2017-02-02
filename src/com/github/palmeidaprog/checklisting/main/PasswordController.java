@@ -7,12 +7,14 @@ package com.github.palmeidaprog.checklisting.main;
 * @email palmeidaprogramming@gmail.com
 */
 
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
+import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PasswordController implements Initializable {
+    @FXML private PasswordField passTF;
 
     //--Singleton design--------------------------------------------
 
@@ -27,8 +29,12 @@ public class PasswordController implements Initializable {
 
     //--------------------------------------------------------------
 
-    public void initializable(URL u, ResourceBundle rb) {
+    public void initialize(URL u, ResourceBundle rb) {
 
+    }
+
+    public void unlockBtnClick() {
+        close();
     }
 
 
