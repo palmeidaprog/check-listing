@@ -12,14 +12,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import com.github.palmeidaprog.checklisting.data.ToDoData;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +43,9 @@ public class MainController implements Initializable {
     @FXML private TableColumn<ToDoData, CheckBox> checkCol;
     @FXML private TableColumn<ToDoData, String> categoryCol, descriptionCol;
     private ObservableList<ToDoData> todoList = FXCollections.observableArrayList();
+
+    // Password Dialog
+    private Stage passwordDialog = new Stage();
 
     //--Singleton design---------------------------------------------------------
     private volatile static MainController instance = null;
@@ -67,9 +75,26 @@ public class MainController implements Initializable {
         descriptionCol.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionCol.setOnEditCommit(editCellEvent("description"));
 
+        loadPasswordDialog();
+
         // password lock
         lock(true);
+        passwordDialog.showAndWait();
+    }
 
+    // Load FXML into passwordDialog stage
+    private void loadPasswordDialog() {
+        FXMLLoader passwordLoad = new FXMLLoader(getClass().getResource("password_dialog.fxml"));
+        passwordLoad.setController(PasswordController.getInstance());
+        Parent passRoot = null;
+        try {
+            passRoot = passwordLoad.load();
+        } catch(IOException e) {
+            System.err.println("Couln't load password_dialog.fxml");
+            e.printStackTrace();
+        }
+        passwordDialog.setTitle("Password Protected");
+        passwordDialog.setScene(new Scene(passRoot, 430, 180));
     }
 
     //--Enter/Exxit Events methods--------------------------------------------------------------------------
