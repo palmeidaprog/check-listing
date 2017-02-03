@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
 
 public class PasswordController implements Initializable {
     @FXML private PasswordField passTF;
+    @FXML private Label label;
+    private int tries = 0;
     private Stage passwordStage;
     private boolean unlock = false;
     private final String DUMMY = "1234"; // dummy password, just for testing purposes
@@ -44,15 +46,23 @@ public class PasswordController implements Initializable {
     // Unlock btn event
     public void unlockBtnClick() {
         if(passTF.getText().equals(DUMMY)) {
+            tries = 0;
             unlock = true;
             passwordStage.close();
+            label.setText("Please type the password to unlock:");
+            passTF.setText("");
+            label.setStyle(null);
             MainController.getInstance().lock(false);
         }
-        else {
+        else if(tries < 3){
+            tries++;
             passTF.setText("");
-            for(int i = 0; i < 3; i++) {
-                passTF.requestFocus();
-            }
+            passTF.requestFocus();
+            label.setText("WRONG PASSWORD! " + tries + " out of 3");
+            label.setStyle("-fx-text-fill: red");
+        }
+        else {
+            exitBtnClick();
         }
     }
 
@@ -77,6 +87,4 @@ public class PasswordController implements Initializable {
             }
         });
     }
-
-
 }

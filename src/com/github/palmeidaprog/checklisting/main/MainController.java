@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import com.github.palmeidaprog.checklisting.data.ToDoData;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -35,9 +36,11 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
     @FXML private HBox topBox;
     @FXML private VBox mainBox;
+    private Stage mainStage;
+    private boolean locked = false;
 
     // top HBox buttons
-    @FXML private Button newBtn, removeBtn, newCategoryBtn;
+    @FXML private Button newBtn, removeBtn, lockBtn;
 
     // To Do Table
     @FXML private TableView<ToDoData> todoTable;
@@ -80,7 +83,6 @@ public class MainController implements Initializable {
 
         // password lock
         lock(true);
-        passwordDialog.showAndWait();
     }
 
     // Load FXML into passwordDialog stage
@@ -94,13 +96,16 @@ public class MainController implements Initializable {
             System.err.println("Couln't load password_dialog.fxml");
             e.printStackTrace();
         }
+        passwordDialog.getIcons().add(new Image(getClass()
+                .getResourceAsStream("resources/todo_trans128.png")));
+
         passwordDialog.setTitle("Password Protected");
         passwordDialog.setScene(new Scene(passRoot, 430, 180));
         passwordDialog.initStyle(StageStyle.UNDECORATED);
         PasswordController.getInstance().setStage(passwordDialog);
     }
 
-    //--Enter/Exxit Events methods--------------------------------------------------------------------------
+    //--Enter/Exxit Events meth  ods--------------------------------------------------------------------------
 
     public void mouseButtonEnter(Button btn) {
         UIEffects.getInstance().btnShadow(btn, MouseEvent.ENTER);
@@ -126,12 +131,12 @@ public class MainController implements Initializable {
         mouseButtonExit(removeBtn);
     }
 
-    public void newCategoryBtnEnter() {
-        mouseButtonEnter(newCategoryBtn);
+    public void lockBtnEnter() {
+        mouseButtonEnter(lockBtn);
     }
 
-    public void newCategoryBtnExit() {
-        mouseButtonExit(newCategoryBtn);
+    public void lockBtnExit() {
+        mouseButtonExit(lockBtn);
     }
 
     //--Click Event-----------------------------------------------------------------------------------------
@@ -160,6 +165,18 @@ public class MainController implements Initializable {
         updateObjOnClose();
     }
 
+    // lock button click event
+    public void lockBtnClick() {
+        lock(true);
+    }
+
+    // Click on mainStage event when it is locked and disabled
+    public void lockClick() {
+        if(locked) {
+            passwordDialog.requestFocus();
+        }
+    }
+
     public void removeBtnClick() {
         // todo: getX() and getY() to calculate dialog show position
         if(todoTable.getSelectionModel().getSelectedItem() != null) {
@@ -170,7 +187,7 @@ public class MainController implements Initializable {
 
             Optional<ButtonType> result = showAlert.showAndWait();
 
-            // Asks if you want to see the windoww
+            // Asks if you want to see the window
             if (result.get() == ButtonType.OK) {
                 Dialog dialog = new Dialog();
                 List<ToDoData> toRemove = new ArrayList<>();
@@ -181,18 +198,26 @@ public class MainController implements Initializable {
         }
     }
 
-    //--Close Event-----------------------------------------------------------------------------------------
+    //--Support methods-----------------------------------------------------------------------------------------
 
     public void updateObjOnClose() {
         DataIO.updateObjFile(todoList);
     }
 
+    public void setStage(Stage stage) {
+        mainStage = stage;
+    }
+
 
     // lock / unlock event
     protected void lock(boolean b) {
+        locked = b;
         UIEffects.getInstance().blur(mainBox, b ? MouseEvent.LOCK : MouseEvent.UNLOCK);
         mainBox.setDisable(b);
         UIEffects.getInstance().blur(topBox, b ? MouseEvent.LOCK : MouseEvent.UNLOCK);
         topBox.setDisable(b);
+        if(b) {
+            passwordDialog.showAndWait();
+        }
     }
 }

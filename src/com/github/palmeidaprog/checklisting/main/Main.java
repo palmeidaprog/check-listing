@@ -8,6 +8,8 @@ package com.github.palmeidaprog.checklisting.main;
 */
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -49,6 +51,7 @@ public class Main extends Application {
 
         mainStage.setTitle("Check Listing v0.1 alpha - To Do List Manager");
         mainStage.setScene(new Scene(root, WIDTH, HEIGHT));
+        MainController.getInstance().setStage(mainStage);
         mainStage.show();
 
         mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -56,38 +59,24 @@ public class Main extends Application {
             @Override
             public void handle(WindowEvent event) {
                 MainController.getInstance().updateObjOnClose();
+                PasswordController.getInstance().exitBtnClick();
+            }
+        });
+
+        mainStage.iconifiedProperty().addListener(new ChangeListener<Boolean>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
+                if(!t1) {
+                    MainController.getInstance().lock(true);
+                }
             }
         });
     }
 
-
-    /*public void osx() {
-        // Mac OS X specific code TODO: Only use when compiling in OS X
-*//*        try {
-            com.apple.eawt.Application.getApplication().setDockIconImage(ImageIO.read(getClass()
-                    .getResourceAsStream("../resources/todo_trans128.png")));
-        } catch(IOException e) {
-            System.err.println("Couldn't find the icon");
-            e.printStackTrace();
-        }*//*
-
-        *//*MenuBar menu = new MenuBar();
-        Menu file = new Menu();
-        MenuItem quit = new MenuItem();
-        quit.setText("Quit");
-        file.setText("File");
-        file.getItems().add(quit);
-        menu.getMenus().add(file);
-        menu.useSystemMenuBarProperty().set(true);*//*
-
-        //com.apple.eawt.Application.getApplication().setDefaultMenuBar(menu);
-
-    }*/
-
     public static Stage getStage() {
         return mainStage;
     }
-
 
     public static void main(String[] args) {
         launch(args);

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="671.0" style="-fx-font-family: &quot;Lucida Grande&quot;;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#lockClick" prefHeight="703.0" prefWidth="671.0" style="-fx-font-family: &quot;Lucida Grande&quot;;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <HBox fx:id="topBox" alignment="CENTER" prefHeight="68.0" prefWidth="530.0" spacing="15.0" styleClass="background">
          <effect>
@@ -27,7 +27,7 @@
                   <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
                </effect>
             </Button>
-            <Button fx:id="newCategoryBtn" disable="true" layoutX="275.0" layoutY="42.0" mnemonicParsing="false" onMouseEntered="#newCategoryBtnEnter" onMouseExited="#newCategoryBtnExit" prefHeight="25.0" prefWidth="125.0" text="New Category">
+            <Button fx:id="lockBtn" layoutX="275.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#lockBtnClick" onMouseEntered="#lockBtnEnter" onMouseExited="#lockBtnExit" prefHeight="25.0" prefWidth="125.0" text="Lock">
                <effect>
                   <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
                </effect>

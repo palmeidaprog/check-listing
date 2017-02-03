@@ -57,18 +57,23 @@ public class UIEffects {
 
         switch(m) {
             case LOCK:
-                s.setInput(b);
-                // no break intended
-            case UNLOCK:
+                // maintain Dropshadow with Blur
                 if(n.getEffect() instanceof DropShadow) {
+                    s.setInput(b);
                     n.setEffect(s);
-                    System.out.println("with shadows " + n.getClass().getName()); // @debug
                 }
                 else {
                     n.setEffect(b);
-                    System.out.println("No shadows " + n.getClass().getName()); // @debug
                 }
+                break;
 
+            case UNLOCK:
+                if(n.getEffect() instanceof DropShadow) {
+                    n.setEffect(s);
+                }
+                else {
+                    n.setEffect(null);
+                }
                 break;
         }
     }
