@@ -96,7 +96,7 @@ public class MainController implements Initializable {
         }
         passwordDialog.setTitle("Password Protected");
         passwordDialog.setScene(new Scene(passRoot, 430, 180));
-        passwordDialog.initStyle(StageStyle.UTILITY);
+        passwordDialog.initStyle(StageStyle.UNDECORATED);
         PasswordController.getInstance().setStage(passwordDialog);
     }
 

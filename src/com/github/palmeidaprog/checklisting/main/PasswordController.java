@@ -22,7 +22,7 @@ public class PasswordController implements Initializable {
     @FXML private PasswordField passTF;
     private Stage passwordStage;
     private boolean unlock = false;
-    private final String DUMMY = "1234";
+    private final String DUMMY = "1234"; // dummy password, just for testing purposes
 
     //--Singleton design--------------------------------------------
 
@@ -38,17 +38,7 @@ public class PasswordController implements Initializable {
     //--------------------------------------------------------------
 
     public void initialize(URL u, ResourceBundle rb) {
-        passwordStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                if(!unlock) {
-                    Platform.exit();
-                }
-                else {
-                    unlock = false;
-                }
-            }
-        });
+
     }
 
     // Unlock btn event
@@ -59,13 +49,30 @@ public class PasswordController implements Initializable {
             MainController.getInstance().lock(false);
         }
         else {
-            passTF.setText(null);
+            passTF.setText("");
             passTF.requestFocus();
         }
     }
 
+    // exit button event
+    public void exitBtnClick() {
+        Platform.exit();
+    }
+
     public void setStage(Stage stage) {
         passwordStage = stage;
+        passwordStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+            @Override
+            public void handle(WindowEvent event) {
+                if(!unlock) {
+                    Platform.exit();
+                }
+                else {
+                    unlock = false;
+                }
+            }
+        });
     }
 
 
