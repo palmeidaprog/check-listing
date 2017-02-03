@@ -79,30 +79,32 @@ public class MainController implements Initializable {
         descriptionCol.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionCol.setOnEditCommit(editCellEvent("description"));
 
-        loadPasswordDialog();
+        loadPasswordDialog("password_dialog.fxml", "Password Protected",
+                430, 180, PasswordController.getInstance());
 
         // password lock
         lock(true);
     }
 
-    // Load FXML into passwordDialog stage
-    private void loadPasswordDialog() {
-        FXMLLoader passwordLoad = new FXMLLoader(getClass().getResource("password_dialog.fxml"));
-        passwordLoad.setController(PasswordController.getInstance());
+    // Load FXML into passwordDialogs stage
+    private void loadPasswordDialog(String fxmlFile, String title, double width, double height,
+                                    PasswordController controller) {
+        FXMLLoader passwordLoad = new FXMLLoader(getClass().getResource(fxmlFile));
+        passwordLoad.setController(controller);
         Parent passRoot = null;
         try {
             passRoot = passwordLoad.load();
         } catch(IOException e) {
-            System.err.println("Couln't load password_dialog.fxml");
+            System.err.println("Couln't load " + fxmlFile);
             e.printStackTrace();
         }
         passwordDialog.getIcons().add(new Image(getClass()
                 .getResourceAsStream("resources/todo_trans128.png")));
 
-        passwordDialog.setTitle("Password Protected");
-        passwordDialog.setScene(new Scene(passRoot, 430, 180));
+        passwordDialog.setTitle(title);
+        passwordDialog.setScene(new Scene(passRoot, width, height));
         passwordDialog.initStyle(StageStyle.UNDECORATED);
-        PasswordController.getInstance().setStage(passwordDialog);
+        controller.setStage(passwordDialog);
     }
 
     //--Enter/Exxit Events meth  ods--------------------------------------------------------------------------

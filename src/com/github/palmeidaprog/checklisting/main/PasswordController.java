@@ -7,6 +7,7 @@ package com.github.palmeidaprog.checklisting.main;
 * @email palmeidaprogramming@gmail.com
 */
 
+import com.github.palmeidaprog.checklisting.interfaces.PasswordControllable;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ import javafx.stage.WindowEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PasswordController implements Initializable {
+public class PasswordController implements Initializable, PasswordControllable {
     @FXML private PasswordField passTF;
     @FXML private Label label;
     private int tries = 0;
@@ -72,6 +73,8 @@ public class PasswordController implements Initializable {
         Platform.exit();
     }
 
+    // PasswordControllable interface method
+    @Override
     public void setStage(Stage stage) {
         passwordStage = stage;
         passwordStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
