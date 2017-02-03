@@ -10,11 +10,14 @@ package com.github.palmeidaprog.checklisting.main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PasswordController implements Initializable {
     @FXML private PasswordField passTF;
+    private Stage passwordStage;
 
     //--Singleton design--------------------------------------------
 
@@ -34,8 +37,10 @@ public class PasswordController implements Initializable {
     }
 
     public void unlockBtnClick() {
-        close();
+        //close();
     }
 
-
+    public void setStage(Stage stage) {
+        passwordStage = stage;
+    }
 }

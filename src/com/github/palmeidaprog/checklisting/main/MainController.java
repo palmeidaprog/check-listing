@@ -95,6 +95,7 @@ public class MainController implements Initializable {
         }
         passwordDialog.setTitle("Password Protected");
         passwordDialog.setScene(new Scene(passRoot, 430, 180));
+        PasswordController.getInstance().setStage(passwordDialog);
     }
 
     //--Enter/Exxit Events methods--------------------------------------------------------------------------
