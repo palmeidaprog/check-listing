@@ -23,6 +23,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -95,6 +96,7 @@ public class MainController implements Initializable {
         }
         passwordDialog.setTitle("Password Protected");
         passwordDialog.setScene(new Scene(passRoot, 430, 180));
+        passwordDialog.initStyle(StageStyle.UTILITY);
         PasswordController.getInstance().setStage(passwordDialog);
     }
 
@@ -187,7 +189,7 @@ public class MainController implements Initializable {
 
 
     // lock / unlock event
-    private void lock(boolean b) {
+    protected void lock(boolean b) {
         UIEffects.getInstance().blur(mainBox, b ? MouseEvent.LOCK : MouseEvent.UNLOCK);
         mainBox.setDisable(b);
         UIEffects.getInstance().blur(topBox, b ? MouseEvent.LOCK : MouseEvent.UNLOCK);
