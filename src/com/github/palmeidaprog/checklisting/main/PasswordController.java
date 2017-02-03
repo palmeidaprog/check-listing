@@ -50,7 +50,9 @@ public class PasswordController implements Initializable {
         }
         else {
             passTF.setText("");
-            passTF.requestFocus();
+            for(int i = 0; i < 3; i++) {
+                passTF.requestFocus();
+            }
         }
     }
 
