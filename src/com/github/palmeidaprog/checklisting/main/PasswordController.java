@@ -56,6 +56,7 @@ public class PasswordController implements Initializable {
 
     // exit button event
     public void exitBtnClick() {
+        passwordStage.close();
         Platform.exit();
     }
 
