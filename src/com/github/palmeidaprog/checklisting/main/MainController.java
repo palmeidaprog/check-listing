@@ -8,6 +8,7 @@ package com.github.palmeidaprog.checklisting.main;
 */
 
 import com.github.palmeidaprog.checklisting.data.DataIO;
+import com.github.palmeidaprog.checklisting.interfaces.PasswordControllable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -50,6 +51,7 @@ public class MainController implements Initializable {
 
     // Password Dialog
     private Stage passwordDialog = new Stage();
+    private Stage newPasswordDialog = new Stage();
 
     //--Singleton design---------------------------------------------------------
     private volatile static MainController instance = null;
@@ -79,8 +81,13 @@ public class MainController implements Initializable {
         descriptionCol.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionCol.setOnEditCommit(editCellEvent("description"));
 
+        // load Password Dialog
         loadPasswordDialog("password_dialog.fxml", "Password Protected",
-                430, 180, PasswordController.getInstance());
+                430, 180, PasswordController.getInstance(), passwordDialog);
+
+        // load New Password Dialog
+        loadPasswordDialog("new_password_dialog.fxml", "Change Password",
+                520, 225, NewPasswordController.getInstance(), newPasswordDialog);
 
         // password lock
         lock(true);
@@ -88,7 +95,7 @@ public class MainController implements Initializable {
 
     // Load FXML into passwordDialogs stage
     private void loadPasswordDialog(String fxmlFile, String title, double width, double height,
-                                    PasswordController controller) {
+                                    PasswordControllable controller, Stage stage) {
         FXMLLoader passwordLoad = new FXMLLoader(getClass().getResource(fxmlFile));
         passwordLoad.setController(controller);
         Parent passRoot = null;
@@ -98,13 +105,13 @@ public class MainController implements Initializable {
             System.err.println("Couln't load " + fxmlFile);
             e.printStackTrace();
         }
-        passwordDialog.getIcons().add(new Image(getClass()
+        stage.getIcons().add(new Image(getClass()
                 .getResourceAsStream("resources/todo_trans128.png")));
 
-        passwordDialog.setTitle(title);
-        passwordDialog.setScene(new Scene(passRoot, width, height));
-        passwordDialog.initStyle(StageStyle.UNDECORATED);
-        controller.setStage(passwordDialog);
+        stage.setTitle(title);
+        stage.setScene(new Scene(passRoot, width, height));
+        stage.initStyle(StageStyle.UNDECORATED);
+        controller.setStage(stage);
     }
 
     //--Enter/Exxit Events meth  ods--------------------------------------------------------------------------

@@ -3,6 +3,10 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
@@ -12,32 +16,59 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#lockClick" prefHeight="703.0" prefWidth="671.0" style="-fx-font-family: &quot;Lucida Grande&quot;;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <HBox fx:id="topBox" alignment="CENTER" prefHeight="68.0" prefWidth="530.0" spacing="15.0" styleClass="background">
-         <effect>
-            <DropShadow />
-         </effect>
+      <VBox>
          <children>
-            <Button fx:id="newBtn" mnemonicParsing="false" onMouseClicked="#newBtnClick" onMouseEntered="#newBtnEnter" onMouseExited="#newBtnExit" prefHeight="18.0" prefWidth="117.0" text="New">
+            <MenuBar styleClass="menu" stylesheets="@../css_ui/menubar.css">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                    <MenuItem mnemonicParsing="false" text="Quit" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Options">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Change Password" />
+                  </items>
+                </Menu>
+                <Menu disable="true" mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
                <effect>
-                  <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
+                  <DropShadow offsetY="5.0" />
                </effect>
-            </Button>
-            <Button fx:id="removeBtn" layoutX="226.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#removeBtnClick" onMouseEntered="#removeBtnEnter" onMouseExited="#removeBtnExit" prefHeight="23.0" prefWidth="123.0" text="Delete">
+            </MenuBar>
+            <HBox fx:id="topBox" alignment="CENTER" prefHeight="68.0" prefWidth="530.0" spacing="15.0" styleClass="background">
                <effect>
-                  <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
+                  <DropShadow />
                </effect>
-            </Button>
-            <Button fx:id="lockBtn" layoutX="275.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#lockBtnClick" onMouseEntered="#lockBtnEnter" onMouseExited="#lockBtnExit" prefHeight="25.0" prefWidth="125.0" text="Lock">
-               <effect>
-                  <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
-               </effect>
-            </Button>
+               <children>
+                  <Button fx:id="newBtn" mnemonicParsing="false" onMouseClicked="#newBtnClick" onMouseEntered="#newBtnEnter" onMouseExited="#newBtnExit" prefHeight="18.0" prefWidth="117.0" text="New">
+                     <effect>
+                        <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
+                     </effect>
+                  </Button>
+                  <Button fx:id="removeBtn" layoutX="226.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#removeBtnClick" onMouseEntered="#removeBtnEnter" onMouseExited="#removeBtnExit" prefHeight="23.0" prefWidth="123.0" text="Delete">
+                     <effect>
+                        <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
+                     </effect>
+                  </Button>
+                  <Button fx:id="lockBtn" layoutX="275.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#lockBtnClick" onMouseEntered="#lockBtnEnter" onMouseExited="#lockBtnExit" prefHeight="25.0" prefWidth="125.0" text="Lock">
+                     <effect>
+                        <DropShadow blurType="GAUSSIAN" offsetX="2.0" offsetY="2.0" />
+                     </effect>
+                  </Button>
+               </children>
+               <stylesheets>
+                  <URL value="@../css_ui/color_background.css" />
+                  <URL value="@../css_ui/button_top.css" />
+               </stylesheets>
+            </HBox>
          </children>
-         <stylesheets>
-            <URL value="@../css_ui/color_background.css" />
-            <URL value="@../css_ui/button_top.css" />
-         </stylesheets>
-      </HBox>
+      </VBox>
    </top>
    <center>
       <VBox fx:id="mainBox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">

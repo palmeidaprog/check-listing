@@ -1,6 +1,7 @@
 package com.github.palmeidaprog.checklisting.main;
 
 /*
+* password_dialog.fxml's Controller
 * Check Listing
 * @author Paulo R. Almeida Filho
 * http://www.github.com/palmeidaprog/check-listing
