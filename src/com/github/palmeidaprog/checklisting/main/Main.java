@@ -68,7 +68,7 @@ public class Main extends Application {
             @Override
             public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
                 if(!t1) {
-                    MainController.getInstance().lock(true);
+                    MainController.getInstance().lock(true, PasswordController.getInstance().getStage());
                 }
             }
         });
