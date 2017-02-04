@@ -18,7 +18,7 @@
    <top>
       <VBox>
          <children>
-            <MenuBar styleClass="menu" stylesheets="@../css_ui/menubar.css">
+            <MenuBar prefHeight="31.0" prefWidth="671.0" styleClass="menu" stylesheets="@../css_ui/menubar.css">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
@@ -38,7 +38,7 @@
                 </Menu>
               </menus>
                <effect>
-                  <DropShadow offsetY="5.0" />
+                  <DropShadow offsetY="8.0" spread="0.1" />
                </effect>
             </MenuBar>
             <HBox fx:id="topBox" alignment="CENTER" prefHeight="68.0" prefWidth="530.0" spacing="15.0" styleClass="background">
