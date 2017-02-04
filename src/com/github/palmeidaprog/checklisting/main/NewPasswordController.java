@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 public class NewPasswordController implements PasswordControllable {
     private Stage passwordStage;
+    private PassDialogMode mode = PassDialogMode.CHANGE;
 
     //--Singleton design--------------------------------------------------
 
@@ -27,7 +28,13 @@ public class NewPasswordController implements PasswordControllable {
 
     //--------------------------------------------------------------------
 
+    public void setMode(PassDialogMode passDialogMode) {
+        mode = passDialogMode;
+    }
 
+    public PassDialogMode getMode() {
+        return mode;
+    }
 
     //--PasswordControllable Interface methods----------------------------
 
