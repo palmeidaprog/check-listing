@@ -54,7 +54,7 @@ public class PasswordController implements Initializable, PasswordControllable {
             label.setText("Please type the password to unlock:");
             passTF.setText("");
             label.setStyle(null);
-            MainController.getInstance().lock(false);
+            MainController.getInstance().lock(false, null);
         }
         else if(tries < 3){
             tries++;
@@ -90,5 +90,10 @@ public class PasswordController implements Initializable, PasswordControllable {
                 }
             }
         });
+    }
+
+    @Override
+    public Stage getStage() {
+        return passwordStage;
     }
 }

@@ -53,15 +53,15 @@ Custom menus properties
 }
 
 .menu-item:focused .left-container { 
-	-fx-background-color: darkgray;
+	-fx-background-color: #52596B;
 }
 
 .menu-item:focused {
-	-fx-background-color: darkgray;	
+	-fx-background-color: #52596B;
 }
 
 .menu-item:focused .label {
-	-fx-background-color: darkgray;	
+	-fx-background-color: #52596B;
 }
 
 

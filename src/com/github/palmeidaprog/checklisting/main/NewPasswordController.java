@@ -35,4 +35,9 @@ public class NewPasswordController implements PasswordControllable {
     public void setStage(Stage stage) {
         passwordStage = stage;
     }
+
+    @Override
+    public Stage getStage() {
+        return passwordStage;
+    }
 }

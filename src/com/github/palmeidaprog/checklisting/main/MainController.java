@@ -90,7 +90,7 @@ public class MainController implements Initializable {
                 520, 225, NewPasswordController.getInstance(), newPasswordDialog);
 
         // password lock
-        lock(true);
+        lock(true, passwordDialog);
     }
 
     // Load FXML into passwordDialogs stage
@@ -148,6 +148,13 @@ public class MainController implements Initializable {
         mouseButtonExit(lockBtn);
     }
 
+    //--Menu events-----------------------------------------------------------------------------------------
+
+    public void changePasswordMenu() {
+        lock(true, newPasswordDialog);
+        newPasswordDialog.showAndWait();
+    }
+
     //--Click Event-----------------------------------------------------------------------------------------
 
     private EventHandler<TableColumn.CellEditEvent<ToDoData,String>> editCellEvent(String col) {
@@ -176,7 +183,7 @@ public class MainController implements Initializable {
 
     // lock button click event
     public void lockBtnClick() {
-        lock(true);
+        lock(true, passwordDialog);
     }
 
     // Click on mainStage event when it is locked and disabled
@@ -219,14 +226,14 @@ public class MainController implements Initializable {
 
 
     // lock / unlock event
-    protected void lock(boolean b) {
+    protected void lock(boolean b, Stage stage) {
         locked = b;
         UIEffects.getInstance().blur(mainBox, b ? MouseEvent.LOCK : MouseEvent.UNLOCK);
         mainBox.setDisable(b);
         UIEffects.getInstance().blur(topBox, b ? MouseEvent.LOCK : MouseEvent.UNLOCK);
         topBox.setDisable(b);
         if(b) {
-            passwordDialog.showAndWait();
+            stage.showAndWait();
         }
     }
 }
