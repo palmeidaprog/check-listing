@@ -9,6 +9,7 @@ package com.github.palmeidaprog.checklisting.main;
 
 import com.github.palmeidaprog.checklisting.data.DataIO;
 import com.github.palmeidaprog.checklisting.interfaces.PasswordControllable;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -87,7 +88,7 @@ public class MainController implements Initializable {
 
         // load New Password Dialog
         loadPasswordDialog("new_password_dialog.fxml", "Change Password",
-                520, 225, NewPasswordController.getInstance(), newPasswordDialog);
+                520, 232, NewPasswordController.getInstance(), newPasswordDialog);
 
         // password lock
         lock(true, PasswordController.getInstance());
@@ -150,9 +151,15 @@ public class MainController implements Initializable {
 
     //--Menu events-----------------------------------------------------------------------------------------
 
+    // Options -> Change password event
     public void changePasswordMenu() {
         lock(true, NewPasswordController.getInstance());
         lock(false, NewPasswordController.getInstance());
+    }
+
+    // File -> Quit menu event
+    public void quitMenu() {
+        Platform.exit();
     }
 
     //--Click Event-----------------------------------------------------------------------------------------

@@ -27,6 +27,7 @@ import java.io.IOException;
 public class Main extends Application {
     private static Stage mainStage;
     private final double WIDTH = 670, HEIGHT = 700;
+    private final String TITLE = "Check Listing v0.2 alpha - To Do List Manager";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -49,7 +50,7 @@ public class Main extends Application {
             osx();
         }*/
 
-        mainStage.setTitle("Check Listing v0.1 alpha - To Do List Manager");
+        mainStage.setTitle(TITLE);
         mainStage.setScene(new Scene(root, WIDTH, HEIGHT));
         MainController.getInstance().setStage(mainStage);
         mainStage.show();

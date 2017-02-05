@@ -5,6 +5,8 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -24,6 +26,8 @@ public class NewPasswordController implements PasswordControllable, Initializabl
     private Stage passwordStage;
     private PassDialogMode mode = PassDialogMode.CHANGE;
     @FXML private TextField oldPassTF, newPassTF, retypePassTF;
+    @FXML private Label labelError;
+    @FXML private Button okBtn;
 
     //--Singleton design--------------------------------------------------
 
@@ -45,6 +49,24 @@ public class NewPasswordController implements PasswordControllable, Initializabl
 
     //--Events methods--------------------------------------------------------------
 
+    // ok button event
+    public void okBtnClick() {
+        if(!oldPassTF.isDisable()) {
+            oldPassAction();
+        }
+        else if(!newPassTF.isDisable()) {
+            newPassAction();
+        }
+        else {
+            retypePassAction();
+        }
+    }
+
+    // cancel button event
+    public void cancelBtnClick() {
+        passwordStage.close();
+    }
+
     // oldpassTF action
     public void oldPassAction() {
         if(oldPassTF.getText().equals(Settings.getInstance().getPassword())) {
@@ -53,12 +75,20 @@ public class NewPasswordController implements PasswordControllable, Initializabl
         else {
             oldPassTF.setText("");
             activateTextField(oldPassTF);
+            displayErrorMsg("Wrong Password");
         }
     }
 
     // newPassTF action
     public void newPassAction() {
-        activateTextField(retypePassTF);
+        if(!newPassTF.getText().equals("")) {
+            activateTextField(retypePassTF);
+            okBtn.setText("CHANGE");
+        }
+        else {
+            displayErrorMsg("The password cannot be empty");
+            newPassTF.requestFocus();
+        }
     }
 
     // retypePassTF action
@@ -71,11 +101,18 @@ public class NewPasswordController implements PasswordControllable, Initializabl
             newPassTF.setText("");
             retypePassTF.setText("");
             activateTextField(newPassTF);
+            displayErrorMsg("The retyped password doesn't match the new");
         }
     }
 
 
     //---Support methods---------------------------------------------------------
+
+    // display a messsage error within a Label below TextFields
+    private void displayErrorMsg(String message) {
+        labelError.setText(message);
+        labelError.setVisible(true);
+    }
 
     // Activate mode
     private void activateMode() {
@@ -91,6 +128,7 @@ public class NewPasswordController implements PasswordControllable, Initializabl
 
     // activate proper TextField and request focus
     private void activateTextField(TextField tx) {
+        labelError.setVisible(false);
         oldPassTF.setDisable(true);
         newPassTF.setDisable(true);
         retypePassTF.setDisable(true);
@@ -110,7 +148,6 @@ public class NewPasswordController implements PasswordControllable, Initializabl
 
     @Override
     public void show() {
-        System.out.println("show"); //@debug
         oldPassTF.setText("");
         newPassTF.setText("");
         retypePassTF.setText("");
