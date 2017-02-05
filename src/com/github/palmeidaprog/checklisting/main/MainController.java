@@ -90,7 +90,7 @@ public class MainController implements Initializable {
                 520, 225, NewPasswordController.getInstance(), newPasswordDialog);
 
         // password lock
-        lock(true, passwordDialog);
+        lock(true, PasswordController.getInstance());
     }
 
     // Load FXML into passwordDialogs stage
@@ -151,8 +151,8 @@ public class MainController implements Initializable {
     //--Menu events-----------------------------------------------------------------------------------------
 
     public void changePasswordMenu() {
-        lock(true, newPasswordDialog);
-        newPasswordDialog.showAndWait();
+        lock(true, NewPasswordController.getInstance());
+        lock(false, NewPasswordController.getInstance());
     }
 
     //--Click Event-----------------------------------------------------------------------------------------
@@ -183,7 +183,7 @@ public class MainController implements Initializable {
 
     // lock button click event
     public void lockBtnClick() {
-        lock(true, passwordDialog);
+        lock(true, PasswordController.getInstance());
     }
 
     // Click on mainStage event when it is locked and disabled
@@ -226,14 +226,14 @@ public class MainController implements Initializable {
 
 
     // lock / unlock event
-    protected void lock(boolean b, Stage stage) {
+    protected void lock(boolean b, PasswordControllable controllable) {
         locked = b;
         UIEffects.getInstance().blur(mainBox, b ? MouseEvent.LOCK : MouseEvent.UNLOCK);
         mainBox.setDisable(b);
         UIEffects.getInstance().blur(topBox, b ? MouseEvent.LOCK : MouseEvent.UNLOCK);
         topBox.setDisable(b);
         if(b) {
-            stage.showAndWait();
+            controllable.show();
         }
     }
 }

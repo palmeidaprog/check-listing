@@ -13,4 +13,5 @@ import javafx.stage.Stage;
 public interface PasswordControllable {
     void setStage(Stage stage);
     Stage getStage();
+    void show();
 }

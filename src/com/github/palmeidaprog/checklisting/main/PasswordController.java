@@ -26,8 +26,6 @@ public class PasswordController implements Initializable, PasswordControllable {
     private int tries = 0;
     private Stage passwordStage;
     private boolean unlock = false;
-    private final String DUMMY = "1234"; // dummy password, just for testing purposes
-
     //--Singleton design--------------------------------------------
 
     private volatile static PasswordController instance = null;
@@ -47,7 +45,7 @@ public class PasswordController implements Initializable, PasswordControllable {
 
     // Unlock btn event
     public void unlockBtnClick() {
-        if(passTF.getText().equals(DUMMY)) {
+        if(passTF.getText().equals(Settings.getInstance().getPassword())) {
             tries = 0;
             unlock = true;
             passwordStage.close();
@@ -74,7 +72,8 @@ public class PasswordController implements Initializable, PasswordControllable {
         Platform.exit();
     }
 
-    // PasswordControllable interface method
+    //--PasswordControllable Interface methods----------------------------
+
     @Override
     public void setStage(Stage stage) {
         passwordStage = stage;
@@ -90,6 +89,11 @@ public class PasswordController implements Initializable, PasswordControllable {
                 }
             }
         });
+    }
+
+    @Override
+    public void show() {
+        passwordStage.showAndWait();
     }
 
     @Override
