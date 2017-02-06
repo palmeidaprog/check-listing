@@ -14,7 +14,9 @@ public class EncryptPass {
     private String generatedSecuredPasswordHash;
 
     public EncryptPass(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        String generatedSecuredPasswordHash = generateStorngPasswordHash(password);
+        generatedSecuredPasswordHash = generateStorngPasswordHash(password);
+        System.out.println("String:" + password); // @debug
+        System.out.println("hash:" + generatedSecuredPasswordHash); // @debug
     }
 
     // How to Use it
@@ -30,6 +32,7 @@ public class EncryptPass {
         int iterations = 1000;
         char[] chars = password.toCharArray();
         byte[] salt = getSalt();
+        System.out.println(salt); // @debug
 
         PBEKeySpec spec = new PBEKeySpec(chars, salt, iterations, 64 * 8);
         SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");

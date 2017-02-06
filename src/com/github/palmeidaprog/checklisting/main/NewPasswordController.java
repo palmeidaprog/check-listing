@@ -1,5 +1,6 @@
 package com.github.palmeidaprog.checklisting.main;
 
+import com.github.palmeidaprog.checklisting.data.EncryptPass;
 import com.github.palmeidaprog.checklisting.interfaces.PasswordControllable;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -12,6 +13,8 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ResourceBundle;
 
 /*
@@ -95,6 +98,11 @@ public class NewPasswordController implements PasswordControllable, Initializabl
     public void retypePassAction() {
         if(retypePassTF.getText().equals(newPassTF.getText())) {
             Settings.getInstance().setPassword(newPassTF.getText());
+            try {
+                EncryptPass enc = new EncryptPass(retypePassTF.getText());
+            } catch(NoSuchAlgorithmException | InvalidKeySpecException e) {
+                e.printStackTrace();
+            }
             passwordStage.close();
         }
         else {
