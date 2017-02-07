@@ -14,7 +14,7 @@
             <option name="windowsIcon" value="$PROJECT_DIR$/src/com/github/palmeidaprog/checklisting/main/resources/todo_trans128.ico" />
           </JavaFxApplicationIcons>
         </option>
-        <option name="nativeBundle" value="all" />
+        <option name="nativeBundle" value="dmg" />
         <option name="title" value="Check Listing - To Do Manager" />
         <option name="vendor" value="Paulo R. Almeida Filho" />
         <option name="version" value="0.2 alpha" />

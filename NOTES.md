@@ -1,6 +1,6 @@
 ###To add:
 
-* Password protection
+* Add option to disable password protection
 * Add category / Category Combo Box
 * Choose custom place to store your data, so you can make use of personal storage cloud to sync between computers.
 * Add a portuguese version
