@@ -72,13 +72,17 @@ public class NewPasswordController implements PasswordControllable, Initializabl
 
     // oldpassTF action
     public void oldPassAction() {
-        if(oldPassTF.getText().equals(Settings.getInstance().getPassword())) {
-            activateTextField(newPassTF);
-        }
-        else {
-            oldPassTF.setText("");
-            activateTextField(oldPassTF);
-            displayErrorMsg("Wrong Password");
+        try {
+            if (EncryptPass.generateStorngPasswordHash(oldPassTF.getText(), Settings
+                    .getInstance().getSalt()).equals(Settings.getInstance().getPassword())) {
+                activateTextField(newPassTF);
+            } else {
+                oldPassTF.setText("");
+                activateTextField(oldPassTF);
+                displayErrorMsg("Wrong Password");
+            }
+        } catch(NoSuchAlgorithmException | InvalidKeySpecException e) {
+            e.printStackTrace();
         }
     }
 
@@ -136,14 +140,14 @@ public class NewPasswordController implements PasswordControllable, Initializabl
         switch(mode) {
             case CHANGE:
                 passwordStage.setTitle("Change Password");
-/*                oldLabel.setDisable(false);
-                titleLbl.setText("Change Password");*/
+                oldLabel.setDisable(false);
+                titleLbl.setText("Change Password");
                 activateTextField(oldPassTF);
                 break;
             case NEW:
                 oldLabel.setDisable(true);
-/*                titleLbl.setText("Create Password");
-                passwordStage.setTitle("Create Password");*/
+                titleLbl.setText("Create Password");
+                passwordStage.setTitle("Create Password");
                 activateTextField(newPassTF);
                 break;
         }

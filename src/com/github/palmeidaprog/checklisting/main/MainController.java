@@ -69,6 +69,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL u, ResourceBundle rb) {
         todoList = DataIO.readObjList();
+        Settings.getInstance().readFromFile();
 
         // To Do TableView
         todoTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -98,6 +99,9 @@ public class MainController implements Initializable {
         else {
             lock(true, PasswordController.getInstance());
         }
+
+        // unlock after password unlock
+        lock(false, null);
     }
 
     // Load FXML into passwordDialogs stage
@@ -160,6 +164,7 @@ public class MainController implements Initializable {
 
     // Options -> Change password event
     public void changePasswordMenu() {
+        NewPasswordController.getInstance().setMode(PassDialogMode.CHANGE);
         lock(true, NewPasswordController.getInstance());
         lock(false, NewPasswordController.getInstance());
     }

@@ -8,6 +8,7 @@ package com.github.palmeidaprog.checklisting.main;
 * @email palmeidaprogramming@gmail.com
 */
 
+import com.github.palmeidaprog.checklisting.data.EncryptPass;
 import com.github.palmeidaprog.checklisting.interfaces.PasswordControllable;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -18,6 +19,8 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ResourceBundle;
 
 public class PasswordController implements Initializable, PasswordControllable {
@@ -45,24 +48,27 @@ public class PasswordController implements Initializable, PasswordControllable {
 
     // Unlock btn event
     public void unlockBtnClick() {
-        if(passTF.getText().equals(Settings.getInstance().getPassword())) {
-            tries = 0;
-            unlock = true;
-            passwordStage.close();
-            label.setText("Please type the password to unlock:");
-            passTF.setText("");
-            label.setStyle(null);
-            MainController.getInstance().lock(false, null);
-        }
-        else if(tries < 3){
-            tries++;
-            passTF.setText("");
-            passTF.requestFocus();
-            label.setText("WRONG PASSWORD! " + tries + " out of 3");
-            label.setStyle("-fx-text-fill: red");
-        }
-        else {
-            exitBtnClick();
+        try {
+            if (EncryptPass.generateStorngPasswordHash(passTF.getText(), Settings.getInstance()
+                    .getSalt()).equals(Settings.getInstance().getPassword())) {
+                tries = 0;
+                unlock = true;
+                passwordStage.close();
+                label.setText("Please type the password to unlock:");
+                passTF.setText("");
+                label.setStyle(null);
+                MainController.getInstance().lock(false, null);
+            } else if (tries < 3) {
+                tries++;
+                passTF.setText("");
+                passTF.requestFocus();
+                label.setText("WRONG PASSWORD! " + tries + " out of 3");
+                label.setStyle("-fx-text-fill: red");
+            } else {
+                exitBtnClick();
+            }
+        } catch(NoSuchAlgorithmException | InvalidKeySpecException e) {
+            e.printStackTrace();
         }
     }
 
@@ -93,6 +99,7 @@ public class PasswordController implements Initializable, PasswordControllable {
 
     @Override
     public void show() {
+        passTF.requestFocus();
         passwordStage.showAndWait();
     }
 

@@ -9,8 +9,7 @@ package com.github.palmeidaprog.checklisting.main;
 
 /*Check Listing settings*/
 
-import java.io.File;
-import java.io.Serializable;
+import java.io.*;
 
 public class Settings implements Serializable {
     private String password = null; // dummy password, just for testing purposes
@@ -24,9 +23,11 @@ public class Settings implements Serializable {
     private transient File linuxFolder = new File(System.getProperty("user.home") +
             "/.CheckListing");
 
-    // Constructor for serialization
+    // Create a temporaty new instancer to update the main instance from
+    // serialization
     public Settings(Settings s) {
-        // todo: create from serial.
+        Settings.getInstance().updateSalt(s.getSalt());
+        Settings.getInstance().updatePassword(s.getPassword());
     }
 
     //--Singleton design----------------------------------------------------
@@ -62,6 +63,7 @@ public class Settings implements Serializable {
 
     public void setPassword(String pass) {
         password = pass;
+        writeToFile();
     }
 
     public void setSalt(byte[] salt) {
@@ -74,12 +76,69 @@ public class Settings implements Serializable {
 
     //--Serializable implementation-------------------------------------------
 
-    // todo: create save and read objfile methods
-
-    // todo: implement serialization once the class has all the variables
-    @Override
-    public String toString() {
-        return "empty";
+    public void updatePassword(String pass) {
+        password = pass;
     }
 
+    public void updateSalt(byte[] s) {
+        slt = s;
+    }
+
+    public void readFromFile() {
+        File objFile = new File(Settings.getInstance().getConfigDir() +
+                "/config.ser");
+
+        if(!objFile.exists()) {
+            createObjFile();
+        }
+        else {
+            // readFile
+            try (ObjectInputStream objIS = new ObjectInputStream(new FileInputStream(objFile))) {
+                while (true) { // infinite loop
+                    Settings obj = new Settings((Settings) objIS.readObject());
+                }
+            } catch(EOFException e) {
+                // do nothing (standard loop exit)
+            } catch(IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /*@param list List of objs to be written*/
+    public void writeToFile() {
+        File objFile = new File(Settings.getInstance().getConfigDir() +
+                "/config.ser");
+
+        // create file if it doesn't exist
+        if(!objFile.exists()) {
+            createObjFile();
+        }
+
+        // write Settings to file
+        try(ObjectOutputStream objOS = new ObjectOutputStream(new FileOutputStream(objFile))) {
+            objOS.writeObject(Settings.getInstance());
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // creates profiles.ser
+    private void createObjFile() {
+        try { // todo: dialog error "couldn't create file/dir"
+            if(!Settings.getInstance().getConfigDir().mkdirs()) {
+                //throw new IOException("Couldn't create the directory");
+            }
+            if(!new File(Settings.getInstance().getConfigDir() + "/config.ser").createNewFile()) {
+                throw new IOException("Couldn't create the config.set file");
+            }
+        } catch(IOException e) {
+            //e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "password=" + password + "; slt=" + slt;
+    }
 }

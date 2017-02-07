@@ -12,7 +12,6 @@ import java.security.spec.InvalidKeySpecException;
  */
 public class EncryptPass {
 
-
     public static String generateStorngPasswordHash(String password, byte[] salt)
             throws NoSuchAlgorithmException, InvalidKeySpecException {
         int iterations = 1000;
