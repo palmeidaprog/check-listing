@@ -11,28 +11,12 @@ import java.security.spec.InvalidKeySpecException;
  * Created by paulo on 2/3/17.
  */
 public class EncryptPass {
-    private String generatedSecuredPasswordHash;
 
-    public EncryptPass(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        generatedSecuredPasswordHash = generateStorngPasswordHash(password);
-        System.out.println("String:" + password); // @debug
-        System.out.println("hash:" + generatedSecuredPasswordHash); // @debug
-    }
 
-    // How to Use it
-/*    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException
-    {
-        String  originalPassword = "password";
-        String generatedSecuredPasswordHash = generateStorngPasswordHash(originalPassword);
-        System.out.println(generatedSecuredPasswordHash);
-    }*/
-
-    private static String generateStorngPasswordHash(String password)
+    public static String generateStorngPasswordHash(String password, byte[] salt)
             throws NoSuchAlgorithmException, InvalidKeySpecException {
         int iterations = 1000;
         char[] chars = password.toCharArray();
-        byte[] salt = getSalt();
-        System.out.println(salt); // @debug
 
         PBEKeySpec spec = new PBEKeySpec(chars, salt, iterations, 64 * 8);
         SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
@@ -40,7 +24,7 @@ public class EncryptPass {
         return iterations + ":" + toHex(salt) + ":" + toHex(hash);
     }
 
-    private static byte[] getSalt() throws NoSuchAlgorithmException {
+    public static byte[] getSalt() throws NoSuchAlgorithmException {
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
         byte[] salt = new byte[16];
         sr.nextBytes(salt);

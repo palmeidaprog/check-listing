@@ -91,7 +91,13 @@ public class MainController implements Initializable {
                 520, 232, NewPasswordController.getInstance(), newPasswordDialog);
 
         // password lock
-        lock(true, PasswordController.getInstance());
+        if(Settings.getInstance().getSalt() == null) {
+            NewPasswordController.getInstance().setMode(PassDialogMode.NEW);
+            lock(true, NewPasswordController.getInstance());
+        }
+        else {
+            lock(true, PasswordController.getInstance());
+        }
     }
 
     // Load FXML into passwordDialogs stage
@@ -99,6 +105,7 @@ public class MainController implements Initializable {
                                     PasswordControllable controller, Stage stage) {
         FXMLLoader passwordLoad = new FXMLLoader(getClass().getResource(fxmlFile));
         passwordLoad.setController(controller);
+        controller.setStage(stage);
         Parent passRoot = null;
         try {
             passRoot = passwordLoad.load();
@@ -112,7 +119,7 @@ public class MainController implements Initializable {
         stage.setTitle(title);
         stage.setScene(new Scene(passRoot, width, height));
         stage.initStyle(StageStyle.UNDECORATED);
-        controller.setStage(stage);
+
     }
 
     //--Enter/Exxit Events meth  ods--------------------------------------------------------------------------
@@ -230,7 +237,6 @@ public class MainController implements Initializable {
     public void setStage(Stage stage) {
         mainStage = stage;
     }
-
 
     // lock / unlock event
     protected void lock(boolean b, PasswordControllable controllable) {

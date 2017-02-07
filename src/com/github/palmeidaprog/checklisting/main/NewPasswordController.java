@@ -29,7 +29,7 @@ public class NewPasswordController implements PasswordControllable, Initializabl
     private Stage passwordStage;
     private PassDialogMode mode = PassDialogMode.CHANGE;
     @FXML private TextField oldPassTF, newPassTF, retypePassTF;
-    @FXML private Label labelError;
+    @FXML private Label labelError, titleLbl, oldLabel;
     @FXML private Button okBtn;
 
     //--Singleton design--------------------------------------------------
@@ -86,7 +86,14 @@ public class NewPasswordController implements PasswordControllable, Initializabl
     public void newPassAction() {
         if(!newPassTF.getText().equals("")) {
             activateTextField(retypePassTF);
-            okBtn.setText("CHANGE");
+            switch(mode) {
+                case NEW:
+                    okBtn.setText("SET");
+                    break;
+                case CHANGE:
+                    okBtn.setText("CHANGE");
+                    break;
+            }
         }
         else {
             displayErrorMsg("The password cannot be empty");
@@ -97,9 +104,11 @@ public class NewPasswordController implements PasswordControllable, Initializabl
     // retypePassTF action
     public void retypePassAction() {
         if(retypePassTF.getText().equals(newPassTF.getText())) {
-            Settings.getInstance().setPassword(newPassTF.getText());
             try {
-                EncryptPass enc = new EncryptPass(retypePassTF.getText());
+                Settings.getInstance().setSalt(EncryptPass.getSalt());
+                Settings.getInstance().setPassword(EncryptPass
+                        .generateStorngPasswordHash(retypePassTF.getText(),
+                                Settings.getInstance().getSalt()));
             } catch(NoSuchAlgorithmException | InvalidKeySpecException e) {
                 e.printStackTrace();
             }
@@ -126,9 +135,15 @@ public class NewPasswordController implements PasswordControllable, Initializabl
     private void activateMode() {
         switch(mode) {
             case CHANGE:
+                passwordStage.setTitle("Change Password");
+/*                oldLabel.setDisable(false);
+                titleLbl.setText("Change Password");*/
                 activateTextField(oldPassTF);
                 break;
             case NEW:
+                oldLabel.setDisable(true);
+/*                titleLbl.setText("Create Password");
+                passwordStage.setTitle("Create Password");*/
                 activateTextField(newPassTF);
                 break;
         }

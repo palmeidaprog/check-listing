@@ -13,7 +13,8 @@ import java.io.File;
 import java.io.Serializable;
 
 public class Settings implements Serializable {
-    private String DUMMY = "1234"; // dummy password, just for testing purposes
+    private String password = null; // dummy password, just for testing purposes
+    private byte[] slt;
 
     // Don't serialize these
     private transient File macFolder = new File(System.getProperty("user.home") +
@@ -56,11 +57,19 @@ public class Settings implements Serializable {
     }
 
     public String getPassword() {
-        return DUMMY;
+        return password;
     }
 
     public void setPassword(String pass) {
-        DUMMY = pass;
+        password = pass;
+    }
+
+    public void setSalt(byte[] salt) {
+        slt = salt;
+    }
+
+    public byte[] getSalt() {
+        return slt;
     }
 
     //--Serializable implementation-------------------------------------------
